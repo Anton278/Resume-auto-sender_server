@@ -6,6 +6,12 @@ class UnreachableVacanciesService {
     const unreachableVacancies = await collection.find({}).toArray();
     return unreachableVacancies;
   }
+
+  async create(vacancy) {
+    const collection = db.collection("unreachableVacancies");
+    const createdVacancy = await collection.insertOne({ ...vacancy });
+    return createdVacancy;
+  }
 }
 
 const unreachableVacanciesService = new UnreachableVacanciesService();

@@ -5,7 +5,7 @@ import unreachableVacanciesController from "../controllers/unreachableVacancies.
 const unreachableVacanciesRouter = Router();
 
 unreachableVacanciesRouter.get("/", unreachableVacanciesController.getAll);
-// unreachableVacations.post("/", unreachableVacationsController.create);
-// unreachableVacations.patch("/", unreachableVacationsController.partlyUpdate);
+unreachableVacanciesRouter.post("/", unreachableVacanciesController.create);
+// unreachableVacanciesRouter.patch("/", unreachableVacanciesController.partlyUpdate);
 
 export default unreachableVacanciesRouter;
