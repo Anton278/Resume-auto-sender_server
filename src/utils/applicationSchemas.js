@@ -6,3 +6,10 @@ export const applicationSchema = object({
   companyName: string().required(),
   url: string().url().required(),
 });
+
+export const updateApplicationSchema = object({
+  jobBoard: string(),
+  jobTitle: string(),
+  companyName: string(),
+  url: string().url().required(),
+});

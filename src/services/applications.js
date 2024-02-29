@@ -12,6 +12,22 @@ class ApplicationsService {
     const createdApplication = await collection.insertOne({ ...application });
     return createdApplication;
   }
+
+  async partlyUpdate(application) {
+    const collection = db.collection("applications");
+    const applicationFromDb = await collection.findOne({
+      url: application.url,
+    });
+
+    const updatedApplication = await collection.findOneAndUpdate(
+      {
+        url: application.url,
+      },
+      { $set: { ...applicationFromDb, ...application } },
+      { returnDocument: "after" }
+    );
+    return updatedApplication;
+  }
 }
 
 const applicationsService = new ApplicationsService();
