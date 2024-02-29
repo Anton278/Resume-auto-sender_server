@@ -2,12 +2,14 @@ import express from "express";
 import { MongoClient } from "mongodb";
 
 import applicationsRouter from "./src/routers/applications.js";
+import unreachableVacanciesRouter from "./src/routers/unreachableVacancies.js";
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/applications", applicationsRouter);
+app.use("/unreachableVacancies", unreachableVacanciesRouter);
 
 const PORT = 5000;
 
