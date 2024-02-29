@@ -1,6 +1,6 @@
 import { object, string } from "yup";
 
-export const applicationSchema = object({
+export const createApplicationSchema = object({
   jobBoard: string().required(),
   jobTitle: string().required(),
   companyName: string().required(),

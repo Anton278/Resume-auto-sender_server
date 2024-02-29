@@ -1,7 +1,7 @@
 import ApplicationDto from "../dtos/application.js";
 import applicationsService from "../services/applications.js";
 import {
-  applicationSchema,
+  createApplicationSchema,
   updateApplicationSchema,
 } from "../utils/applicationSchemas.js";
 
@@ -18,7 +18,7 @@ class ApplicationsController {
 
   async create(req, res) {
     try {
-      req.body = await applicationSchema.validate(req.body, {
+      req.body = await createApplicationSchema.validate(req.body, {
         stripUnknown: true,
       });
     } catch (err) {
