@@ -37,6 +37,14 @@ class ApplicationsController {
     }
 
     try {
+      const candidate = await applicationsService.getOne(req.body.url);
+      if (candidate) {
+        res
+          .status(409)
+          .json({ message: "application with given url already exist" });
+        return;
+      }
+
       const createdApplication = await applicationsService.create(req.body);
       res.status(200).json({ ...req.body, id: createdApplication.insertedId });
       // telegramBot;

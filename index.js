@@ -37,7 +37,7 @@ try {
     console.log(message);
   });
 
-  await telegramBot.api.sendMessage(884805370, "Hi!");
+  // await telegramBot.api.sendMessage(884805370, "Hi!");
 
   telegramBot.start();
 } catch (err) {

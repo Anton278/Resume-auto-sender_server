@@ -27,6 +27,16 @@ class UnreachableVacanciesController {
     }
 
     try {
+      const candidate = await unreachableVacanciesService.getOne(req.body.url);
+      if (candidate) {
+        res
+          .status(409)
+          .json({
+            message: "unreachable vacancy with given url already exist",
+          });
+        return;
+      }
+
       const createdUnreachableVacancy =
         await unreachableVacanciesService.create(req.body);
       res
