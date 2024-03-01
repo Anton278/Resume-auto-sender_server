@@ -13,4 +13,5 @@ export const updateApplicationSchema = object({
   jobTitle: string(),
   companyName: string(),
   url: string().url().required(),
+  status: string(),
 });
