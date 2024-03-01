@@ -5,6 +5,7 @@ export const createApplicationSchema = object({
   jobTitle: string().required(),
   companyName: string().required(),
   url: string().url().required(),
+  status: string().required(),
 });
 
 export const updateApplicationSchema = object({
