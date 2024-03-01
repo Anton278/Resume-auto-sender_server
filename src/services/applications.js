@@ -7,6 +7,12 @@ class ApplicationsService {
     return applications;
   }
 
+  async getOne(url) {
+    const collection = db.collection("applications");
+    const applications = await collection.find({ url }).toArray();
+    return applications[0];
+  }
+
   async create(application) {
     const collection = db.collection("applications");
     const createdApplication = await collection.insertOne({ ...application });

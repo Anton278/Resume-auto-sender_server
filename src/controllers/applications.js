@@ -8,6 +8,15 @@ import {
 class ApplicationsController {
   async getAll(req, res) {
     try {
+      const { url } = req.query;
+      if (url) {
+        const application = await applicationsService.getOne(url);
+        application
+          ? res.status(200).json(application)
+          : res.status(404).json(null);
+        return;
+      }
+
       const applications = await applicationsService.getAll();
       res.status(200).json(applications);
     } catch (err) {
