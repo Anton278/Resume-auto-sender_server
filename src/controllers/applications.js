@@ -1,3 +1,4 @@
+// import { telegramBot } from "../../index.js";
 import ApplicationDto from "../dtos/application.js";
 import applicationsService from "../services/applications.js";
 import {
@@ -38,6 +39,7 @@ class ApplicationsController {
     try {
       const createdApplication = await applicationsService.create(req.body);
       res.status(200).json({ ...req.body, id: createdApplication.insertedId });
+      // telegramBot;
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "" });
