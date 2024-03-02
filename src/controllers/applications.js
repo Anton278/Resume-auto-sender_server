@@ -5,6 +5,7 @@ import {
   createApplicationSchema,
   updateApplicationSchema,
 } from "../utils/applicationSchemas.js";
+import { createSuccessMessage } from "../utils/createTelegramMessage.js";
 
 class ApplicationsController {
   async getAll(req, res) {
@@ -47,7 +48,6 @@ class ApplicationsController {
 
       const createdApplication = await applicationsService.create(req.body);
       res.status(200).json({ ...req.body, id: createdApplication.insertedId });
-      // telegramBot;
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "" });
@@ -69,6 +69,16 @@ class ApplicationsController {
         req.body
       );
       res.status(200).json(new ApplicationDto(updatedApplication));
+
+      if (req.body.status === "successfully sent") {
+        await telegramBot.api.sendMessage(
+          process.env.TELEGRAM_ID,
+          createSuccessMessage(req.body),
+          {
+            parse_mode: "MarkdownV2",
+          }
+        );
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "" });

@@ -1,6 +1,7 @@
 import { telegramBot } from "../../index.js";
 import UnreachableVacancyDto from "../dtos/unreachableVacancy.js";
 import unreachableVacanciesService from "../services/unreachableVacancies.js";
+import { createFailMessage } from "../utils/createTelegramMessage.js";
 import { createUnreachableVacancySchema } from "../utils/unreachableVacanySchemas.js";
 
 class UnreachableVacanciesController {
@@ -45,9 +46,10 @@ class UnreachableVacanciesController {
       if (req.body.reason === "Required input present") {
         await telegramBot.api.sendMessage(
           process.env.TELEGRAM_ID,
-          `Failed to send application: required input present
-          Url: ${req.body.url}
-          `
+          createFailMessage(req.body),
+          {
+            parse_mode: "MarkdownV2",
+          }
         );
       }
     } catch (err) {
