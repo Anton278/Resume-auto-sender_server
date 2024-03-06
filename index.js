@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/applications", applicationsRouter);
 app.use("/unreachableVacancies", unreachableVacanciesRouter);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
@@ -37,5 +37,9 @@ try {
   console.log(err);
 }
 
-const db = client.db("auto-resume-sender");
+const db = client.db(
+  process.env.NODE_ENV === "development"
+    ? "auto-resume-sender-test"
+    : "auto-resume-sender"
+);
 export { db };
