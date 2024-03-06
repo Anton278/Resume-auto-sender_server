@@ -6,6 +6,7 @@ import { Bot } from "grammy";
 
 import applicationsRouter from "./src/routers/applications.js";
 import unreachableVacanciesRouter from "./src/routers/unreachableVacancies.js";
+import healthController from "./src/controllers/health.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 
 app.use("/applications", applicationsRouter);
 app.use("/unreachableVacancies", unreachableVacanciesRouter);
+app.get("/health", healthController.get);
 
 const PORT = process.env.PORT || 5000;
 
