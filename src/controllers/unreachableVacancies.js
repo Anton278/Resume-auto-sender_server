@@ -39,9 +39,8 @@ class UnreachableVacanciesController {
 
       const createdUnreachableVacancy =
         await unreachableVacanciesService.create(req.body);
-      res
-        .status(200)
-        .json({ ...req.body, id: createdUnreachableVacancy.insertedId });
+      const dto = new UnreachableVacancyDto(createdUnreachableVacancy);
+      res.status(200).json(dto);
 
       if (req.body.reason === "Required input present") {
         await telegramBot.api.sendMessage(

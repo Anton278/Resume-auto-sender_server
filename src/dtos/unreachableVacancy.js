@@ -5,6 +5,8 @@ class UnreachableVacancyDto {
   companyName;
   url;
   reason;
+  createdAt;
+  updatedAt;
 
   constructor(vacancy) {
     this.id = vacancy._id;
@@ -13,6 +15,8 @@ class UnreachableVacancyDto {
     this.companyName = vacancy.companyName;
     this.url = vacancy.url;
     this.reason = vacancy.reason;
+    this.createdAt = vacancy.createdAt;
+    this.updatedAt = vacancy.updatedAt;
   }
 }
 

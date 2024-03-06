@@ -4,6 +4,9 @@ class ApplicationDto {
   companyName;
   url;
   id;
+  status;
+  createdAt;
+  updatedAt;
 
   constructor(application) {
     this.jobBoard = application.jobBoard;
@@ -11,6 +14,9 @@ class ApplicationDto {
     this.companyName = application.companyName;
     this.url = application.url;
     this.id = application._id;
+    this.status = application.status;
+    this.createdAt = application.createdAt;
+    this.updatedAt = application.updatedAt;
   }
 }
 

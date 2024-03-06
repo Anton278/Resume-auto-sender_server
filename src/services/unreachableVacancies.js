@@ -15,7 +15,17 @@ class UnreachableVacanciesService {
 
   async create(vacancy) {
     const collection = db.collection("unreachableVacancies");
-    const createdVacancy = await collection.insertOne({ ...vacancy });
+
+    const createdAt = new Date().toISOString();
+    await collection.insertOne({
+      ...vacancy,
+      createdAt,
+      updatedAt: createdAt,
+    });
+
+    const createdVacancy = await collection.findOne({
+      url: vacancy.url,
+    });
     return createdVacancy;
   }
 }

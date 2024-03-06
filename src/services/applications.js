@@ -15,7 +15,17 @@ class ApplicationsService {
 
   async create(application) {
     const collection = db.collection("applications");
-    const createdApplication = await collection.insertOne({ ...application });
+
+    const createdAt = new Date().toISOString();
+    await collection.insertOne({
+      ...application,
+      createdAt,
+      updatedAt: createdAt,
+    });
+
+    const createdApplication = await collection.findOne({
+      url: application.url,
+    });
     return createdApplication;
   }
 
@@ -24,12 +34,13 @@ class ApplicationsService {
     const applicationFromDb = await collection.findOne({
       url: application.url,
     });
+    const updatedAt = new Date().toISOString();
 
     const updatedApplication = await collection.findOneAndUpdate(
       {
         url: application.url,
       },
-      { $set: { ...applicationFromDb, ...application } },
+      { $set: { ...applicationFromDb, ...application, updatedAt } },
       { returnDocument: "after" }
     );
     return updatedApplication;
