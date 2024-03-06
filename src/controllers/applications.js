@@ -73,7 +73,7 @@ class ApplicationsController {
       if (req.body.status === "successfully sent") {
         await telegramBot.api.sendMessage(
           process.env.TELEGRAM_ID,
-          createSuccessMessage(req.body),
+          createSuccessMessage(updatedApplication),
           {
             parse_mode: "MarkdownV2",
           }
