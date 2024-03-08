@@ -6,4 +6,5 @@ export const createUnreachableVacancySchema = object({
   companyName: string().required(),
   url: string().url().required(),
   reason: string().required(),
+  applicationsCount: string(),
 });

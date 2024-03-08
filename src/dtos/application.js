@@ -5,6 +5,7 @@ class ApplicationDto {
   url;
   id;
   status;
+  applicationsCount;
   createdAt;
   updatedAt;
 
@@ -15,6 +16,7 @@ class ApplicationDto {
     this.url = application.url;
     this.id = application._id;
     this.status = application.status;
+    this.applicationsCount = application.applicationsCount;
     this.createdAt = application.createdAt;
     this.updatedAt = application.updatedAt;
   }

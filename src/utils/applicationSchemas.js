@@ -6,6 +6,7 @@ export const createApplicationSchema = object({
   companyName: string().required(),
   url: string().url().required(),
   status: string().required(),
+  applicationsCount: string(),
 });
 
 export const updateApplicationSchema = object({

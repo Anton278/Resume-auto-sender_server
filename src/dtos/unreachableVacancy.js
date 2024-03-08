@@ -5,6 +5,7 @@ class UnreachableVacancyDto {
   companyName;
   url;
   reason;
+  applicationsCount;
   createdAt;
   updatedAt;
 
@@ -15,6 +16,7 @@ class UnreachableVacancyDto {
     this.companyName = vacancy.companyName;
     this.url = vacancy.url;
     this.reason = vacancy.reason;
+    this.applicationsCount = vacancy.applicationsCount;
     this.createdAt = vacancy.createdAt;
     this.updatedAt = vacancy.updatedAt;
   }
