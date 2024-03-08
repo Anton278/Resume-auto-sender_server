@@ -1,42 +1,39 @@
-import { db } from "../../index.js";
+import { db } from "../db/conn.js";
 
 class ApplicationsService {
+  #collection = db.collection("applications");
+
   async getAll() {
-    const collection = db.collection("applications");
-    const applications = await collection.find({}).toArray();
+    const applications = await this.#collection.find({}).toArray();
     return applications;
   }
 
   async getOne(url) {
-    const collection = db.collection("applications");
-    const applications = await collection.find({ url }).toArray();
+    const applications = await this.#collection.find({ url }).toArray();
     return applications[0];
   }
 
   async create(application) {
-    const collection = db.collection("applications");
-
     const createdAt = new Date().toISOString();
-    await collection.insertOne({
+    await this.#collection.insertOne({
       ...application,
       createdAt,
       updatedAt: createdAt,
     });
 
-    const createdApplication = await collection.findOne({
+    const createdApplication = await this.#collection.findOne({
       url: application.url,
     });
     return createdApplication;
   }
 
   async partlyUpdate(application) {
-    const collection = db.collection("applications");
-    const applicationFromDb = await collection.findOne({
+    const applicationFromDb = await this.#collection.findOne({
       url: application.url,
     });
     const updatedAt = new Date().toISOString();
 
-    const updatedApplication = await collection.findOneAndUpdate(
+    const updatedApplication = await this.#collection.findOneAndUpdate(
       {
         url: application.url,
       },

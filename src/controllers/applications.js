@@ -1,4 +1,4 @@
-import { telegramBot } from "../../index.js";
+import { telegramBot } from "../telegramBot/index.js";
 import ApplicationDto from "../dtos/application.js";
 import applicationsService from "../services/applications.js";
 import {

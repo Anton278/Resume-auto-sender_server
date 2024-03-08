@@ -1,6 +1,6 @@
 import { InlineKeyboard } from "grammy";
 
-import { telegramBot } from "../../index.js";
+import { telegramBot } from "../telegramBot/index.js";
 import UnreachableVacancyDto from "../dtos/unreachableVacancy.js";
 import unreachableVacanciesService from "../services/unreachableVacancies.js";
 import { createFailMessage } from "../utils/createTelegramMessage.js";

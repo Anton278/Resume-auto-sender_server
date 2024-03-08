@@ -1,4 +1,4 @@
-import { db } from "../../index.js";
+import { db } from "../db/conn.js";
 
 class HealthController {
   async get(req, res) {
