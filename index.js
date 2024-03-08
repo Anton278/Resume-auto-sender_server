@@ -7,10 +7,34 @@ import { Bot } from "grammy";
 import applicationsRouter from "./src/routers/applications.js";
 import unreachableVacanciesRouter from "./src/routers/unreachableVacancies.js";
 import healthController from "./src/controllers/health.js";
+import unreachableVacanciesService from "./src/services/unreachableVacancies.js";
+import applicationsService from "./src/services/applications.js";
 
 const app = express();
 
 export const telegramBot = new Bot(process.env.TELEGRAM_BOT_KEY);
+
+telegramBot.callbackQuery(/Edited/, async (ctx) => {
+  try {
+    const url = ctx.match.input.split(" ")[1];
+
+    const deletedVacancy = await unreachableVacanciesService.deleteOne(url);
+
+    await applicationsService.create({
+      ...deletedVacancy,
+      status: "successfully sent",
+    });
+
+    await ctx.reply("✅ Application created", {
+      reply_parameters: {
+        message_id: ctx.update.callback_query.message.message_id,
+      },
+    });
+    await ctx.editMessageReplyMarkup();
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.use(
   cors({

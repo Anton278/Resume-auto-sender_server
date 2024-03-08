@@ -28,6 +28,13 @@ class UnreachableVacanciesService {
     });
     return createdVacancy;
   }
+
+  async deleteOne(url) {
+    const collection = db.collection("unreachableVacancies");
+
+    const deletedVacancy = await collection.findOneAndDelete({ url });
+    return deletedVacancy;
+  }
 }
 
 const unreachableVacanciesService = new UnreachableVacanciesService();

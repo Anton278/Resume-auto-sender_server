@@ -1,3 +1,5 @@
+import { InlineKeyboard } from "grammy";
+
 import { telegramBot } from "../../index.js";
 import UnreachableVacancyDto from "../dtos/unreachableVacancy.js";
 import unreachableVacanciesService from "../services/unreachableVacancies.js";
@@ -48,6 +50,10 @@ class UnreachableVacanciesController {
           createFailMessage(req.body),
           {
             parse_mode: "MarkdownV2",
+            reply_markup: new InlineKeyboard().text(
+              "✅ Mark as successfully sent",
+              `Edited: ${req.body.url}`
+            ),
           }
         );
       }
