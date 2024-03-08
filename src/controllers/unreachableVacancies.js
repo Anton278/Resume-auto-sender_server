@@ -52,7 +52,7 @@ class UnreachableVacanciesController {
             parse_mode: "MarkdownV2",
             reply_markup: new InlineKeyboard().text(
               "✅ Mark as successfully sent",
-              `Edited: ${req.body.url}`
+              `approve-sent-application: ${req.body.url}`
             ),
           }
         );
