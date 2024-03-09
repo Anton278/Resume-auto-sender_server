@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 import { db } from "../db/conn.js";
 
 class UnreachableVacanciesService {
@@ -27,8 +29,10 @@ class UnreachableVacanciesService {
     return createdVacancy;
   }
 
-  async deleteOne(url) {
-    const deletedVacancy = await this.#collection.findOneAndDelete({ url });
+  async deleteOne(id) {
+    const deletedVacancy = await this.#collection.findOneAndDelete({
+      _id: new ObjectId(id),
+    });
     return deletedVacancy;
   }
 }

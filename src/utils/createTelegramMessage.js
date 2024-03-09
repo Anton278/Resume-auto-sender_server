@@ -6,7 +6,7 @@ export const createFailMessage = (vacancy) => {
   vacancyCopy.jobTitle = escapeChars(vacancyCopy.jobTitle);
   vacancyCopy.companyName = escapeChars(vacancyCopy.companyName);
 
-  return `❌ Failed to send application: required input present\n\nJob board: *${vacancyCopy.jobBoard}*\nJob title: *${vacancyCopy.jobTitle}*\nCompany name: *${vacancyCopy.companyName}*\nUrl: [URL](${vacancyCopy.url})`;
+  return `❌ Failed to send application: required input present\n\nJob board: *${vacancyCopy.jobBoard}*\nJob title: *${vacancyCopy.jobTitle}*\nCompany name: *${vacancyCopy.companyName}*\nUrl: [URL](${vacancyCopy.url})\nApplications count: *${vacancyCopy.applicationsCount}*`;
 };
 
 export const createSuccessMessage = (application) => {
@@ -15,5 +15,5 @@ export const createSuccessMessage = (application) => {
   applicationCopy.jobTitle = escapeChars(applicationCopy.jobTitle);
   applicationCopy.companyName = escapeChars(applicationCopy.companyName);
 
-  return `✅ Successfully sent application\n\nJob board: *${applicationCopy.jobBoard}*\nJob title: *${applicationCopy.jobTitle}*\nCompany name: *${applicationCopy.companyName}*\nUrl: [URL](${applicationCopy.url})`;
+  return `✅ Successfully sent application\n\nJob board: *${applicationCopy.jobBoard}*\nJob title: *${applicationCopy.jobTitle}*\nCompany name: *${applicationCopy.companyName}*\nUrl: [URL](${applicationCopy.url})\nApplications count: *${applicationCopy.applicationsCount}*`;
 };

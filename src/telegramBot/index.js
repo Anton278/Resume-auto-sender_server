@@ -5,8 +5,8 @@ import applicationsService from "../services/applications.js";
 
 const telegramBot = new Bot(process.env.TELEGRAM_BOT_KEY);
 
-telegramBot.callbackQuery(/approve-sent-application/, async (ctx) => {
-  const url = ctx.match.input.split(" ")[1];
+telegramBot.callbackQuery(/approve/, async (ctx) => {
+  const vacancyId = ctx.match.input.split(" ")[1];
 
   await ctx
     .reply("Have you sent application to vacancy?", {
@@ -15,16 +15,18 @@ telegramBot.callbackQuery(/approve-sent-application/, async (ctx) => {
       },
       reply_markup: new InlineKeyboard()
         .text("No", "delete-message")
-        .text("Yes", `sent-application: ${url}`),
+        .text("Yes", `sent: ${vacancyId}`),
     })
     .catch((err) => console.log(err));
 });
 
-telegramBot.callbackQuery(/sent-application/, async (ctx) => {
+telegramBot.callbackQuery(/sent/, async (ctx) => {
   try {
-    const url = ctx.match.input.split(" ")[1];
+    const vacancyId = ctx.match.input.split(" ")[1];
 
-    const deletedVacancy = await unreachableVacanciesService.deleteOne(url);
+    const deletedVacancy = await unreachableVacanciesService.deleteOne(
+      vacancyId
+    );
     if (!deletedVacancy) {
       return;
     }
